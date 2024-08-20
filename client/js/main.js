@@ -1,6 +1,6 @@
 // Arquivo: scripts.js
 
-const apiBaseUrl = 'http://localhost:3000/products';
+const apiBaseUrl = 'http://localhost:5500/products';
 
 // Carregar todos os produtos ao iniciar
 document.addEventListener('DOMContentLoaded', loadProducts);

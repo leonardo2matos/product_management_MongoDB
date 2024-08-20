@@ -3,11 +3,11 @@ require('dotenv').config(); // Carregar as variáveis do .env
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const productRoutes = require('./routes/productRoutes');
-const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('server/routes/productRoutes');
+const authRoutes = require('server/routes/authRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5500;
 
 // Middleware
 app.use(cors());

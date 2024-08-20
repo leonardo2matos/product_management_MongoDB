@@ -1,6 +1,6 @@
 // Arquivo: /client/js/auth.js
 
-const apiBaseUrl = 'http://localhost:3000';
+const apiBaseUrl = 'http://localhost:5500';
 
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
