@@ -1,20 +1,31 @@
+require('dotenv').config(); // Carregar as variáveis do .env
+
+const express = require('express');
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const cors = require('cors');
+const productRoutes = require('./routes/productRoutes');
+const authRoutes = require('./routes/authRoutes');
 
-const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
-}, { timestamps: true });
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Hash da senha antes de salvar
-userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Conectar ao MongoDB Atlas
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+})
+    .then(() => console.log('Conectado ao MongoDB Atlas'))
+    .catch(error => console.error('Erro ao conectar ao MongoDB Atlas:', error.message));
+
+// Rotas
+app.use('/products', productRoutes);
+app.use('/auth', authRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-const User = mongoose.model('User', userSchema);
-module.exports = User;
-

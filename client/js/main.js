@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
 // Função para carregar todos os produtos
 function loadProducts() {
-    fetch(apiBaseUrl)
+    fetch(`${apiBaseUrl}?page=1&limit=10`)
         .then(response => response.json())
-        .then(data => renderProducts(data))
+        .then(data => {
+            console.log(data); // Processar dados de produtos
+        })
         .catch(error => console.error('Erro ao carregar produtos:', error));
 }
 
