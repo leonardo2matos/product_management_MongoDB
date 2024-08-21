@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const productRoutes = require('server/routes/productRoutes');
-const authRoutes = require('server/routes/authRoutes');
+const productRoutes = require('./server/routes/productRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5500;
